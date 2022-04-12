@@ -1,0 +1,42 @@
+;linear search
+	AREA RESET, DATA, READONLY
+	EXPORT __Vectors
+__Vectors
+	DCD 0x10001000
+	DCD Reset_Handler
+	ALIGN
+	AREA mycode, CODE, READONLY
+	ENTRY
+	EXPORT Reset_Handler
+
+Reset_Handler
+
+	LDRB R0, N1
+	LDR R1, =SRC
+	LDRB R2, ELE
+	LDR R3, =1
+	LDR R5, =DST
+	
+LOOP
+	CMP R0, #0                              
+	STRBEQ R0, [R5]
+	BEQ DONE
+	LDRB R4, [R1], #1
+	CMP R4, R2
+	STRBEQ R3, [R5]
+	BEQ DONE
+	ADD R3, #1
+	SUB R0, #1
+	B LOOP
+	
+DONE
+
+HERE	B HERE
+
+N1	DCB 10
+SRC	DCB 10,42,2,97,54,16,37,81,11,65
+ELE DCB 65
+
+	AREA mydata, DATA, READWRITE
+DST DCB 0
+	END
