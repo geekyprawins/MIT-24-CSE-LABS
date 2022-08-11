@@ -2,6 +2,87 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+// credits to: Adithya Balanand (https://github.com/adithya-3141)
+// for the following function
+
+void removePreProcessorDirectives(FILE *fa, FILE *fb)
+{
+
+    char c;
+    char buff;
+
+    c = fgetc(fa);
+
+    while (c != EOF)
+    {
+
+        if (c == '"')
+        {
+            fputc(c, fb);
+            c = fgetc(fa);
+
+            while (c != '"')
+            {
+                fputc(c, fb);
+                c = fgetc(fa);
+            }
+            fputc(c, fb);
+        }
+
+        else if (c == '/')
+        {
+            buff = fgetc(fa);
+
+            if (buff == '/')
+            {
+
+                fputc(buff, fb);
+                while (c != '\n')
+                {
+                    fputc(c, fb);
+                    c = fgetc(fa);
+                }
+            }
+
+            else if (buff == '*')
+            {
+                fputc(c, fb);
+                fputc(buff, fb);
+                c = fgetc(fa);
+                do
+                {
+                    while (c != '*')
+                    {
+                        fputc(c, fb);
+                        c = fgetc(fa);
+                    }
+                    fputc(c, fb);
+                    c = fgetc(fa);
+                } while (c != '/');
+                fputc(c, fb);
+            }
+        }
+
+        else if (c == '#')
+        {
+
+            while (c != '\n')
+            {
+                c = fgetc(fa);
+            }
+        }
+
+        else
+        {
+            fputc(c, fb);
+        }
+
+        c = fgetc(fa);
+    }
+}
 
 int main()
 {
@@ -19,24 +100,7 @@ int main()
     memset(filename, 0, 50);
     scanf("%s", filename);
     fptr2 = fopen(filename, "w+");
-    c = fgetc(fptr1);
-    while (c != EOF)
-    {
-        if (c == '#')
-        {
-            while (fgetc(fptr1) != '\n')
-            {
-            };
-        }
-        c = fgetc(fptr1);
-        if (c == '#')
-            continue;
-        while (c != EOF && c != '#')
-        {
-            fputc(c, fptr2);
-            c = fgetc(fptr1);
-        }
-    }
+    removePreProcessorDirectives(fptr1, fptr2);
     fclose(fptr1);
     fclose(fptr2);
     return 0;
