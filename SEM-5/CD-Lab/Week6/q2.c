@@ -42,7 +42,7 @@ void U()
         }
         else
             invalid();
-    }
+    }                                                                                         
     else if (str[curr] == 'a')
     {
         curr++;
