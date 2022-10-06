@@ -472,6 +472,7 @@ int looping_stat()
                             if (strcmp(retToken.token_name, "}") == 0)
                             {
                                 match();
+                                dprime(); // changed here
                             }
                             else
                             {

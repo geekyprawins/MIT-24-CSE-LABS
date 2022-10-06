@@ -2,7 +2,7 @@ main()
 {
 	int a,b,p[25];
 	char c;
-	while(a){
+	while(a!=10){
 		if(a b){
 			a=a+b*c;
 		}
