@@ -56,14 +56,9 @@ int main(int argc, char const *argv[])
         printf("Cannot open file \n");
         exit(0);
     }
-    // printf("File opened\nParsing Started\n");
     Program();
     printSymbolTable();
-    // printf("Im in main after parsing\n");
-    /*if(strcmp(retToken.token_name,"eof")==0||feof(fp))
-        valid();
-    else
-        invalid("EOF");*/
+
     if (retToken.row == -1)
         valid();
     else
@@ -72,7 +67,6 @@ int main(int argc, char const *argv[])
 
 void match()
 {
-    // printf("Inside Match\n");
     retToken = getNextToken(fp);
     if (retToken.row == -1)
         return;
@@ -100,7 +94,6 @@ void Program()
                     statement_list();
                     if (strcmp(retToken.token_name, "}") == 0)
                     {
-                        // printf("Reached here\n");
                         match();
                     }
                     else
@@ -472,7 +465,7 @@ int looping_stat()
                             if (strcmp(retToken.token_name, "}") == 0)
                             {
                                 match();
-                                dprime(); // changed here
+                                dprime();
                             }
                             else
                             {

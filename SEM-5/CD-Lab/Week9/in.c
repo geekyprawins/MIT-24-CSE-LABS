@@ -127,5 +127,11 @@ main()
 	// }
 
 	while(a>b){f=f+1;}
+
+	for(i=0;i<10;i=i+9){
+		if(a>b){
+			// printf("idk");
+		}
+	}
 }
 $

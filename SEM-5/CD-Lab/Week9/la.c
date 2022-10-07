@@ -11,7 +11,7 @@ struct Token
 {
 	char *token_name;
 	int index;
-	int row, col; //Line numbers.
+	int row, col; // Line numbers.
 	char *type;
 };
 
@@ -150,8 +150,6 @@ void createSymbolTable(char *buf)
 	symboltableindex++;
 	lexemeindex = 0;
 	strcpy(symboltablename[symboltableindex], buf);
-	// printf("Symbol table index%d\n",symboltableindex);
-	// printf("Lexeme index%d\n",lexemeindex);
 }
 
 int searchSymbolTable(char *buf)
@@ -172,8 +170,8 @@ void insertSymbolTable(char *buff, char *dbuf, FILE *fp)
 		return;
 	else
 	{
-		//bringing the pointer one back to read whether it is an aray or function
-		//fseek(fp,-1,SEEK_CUR);
+		// bringing the pointer one back to read whether it is an aray or function
+		// fseek(fp,-1,SEEK_CUR);
 		char c = fgetc(fp);
 		fseek(fp, -1, SEEK_CUR);
 		// printf("%c",c);
@@ -197,7 +195,7 @@ void insertSymbolTable(char *buff, char *dbuf, FILE *fp)
 				c = fgetc(fp);
 				while (c != ']')
 				{
-					//converting char digit to single digit
+					// converting char digit to single digit
 					arrayLength = arrayLength + ((int)c - 48) * 10;
 					c = fgetc(fp);
 				}
@@ -236,13 +234,7 @@ struct Token getNextToken(FILE *fp)
 	struct Token tok;
 	while (c != EOF)
 	{
-		// if(c==EOF)
-		//       {
-		//       	strcpy(tok.token_name,"eof");
-		//       	tok.row=row;
-		//       	tok.col=column;
-		//       	return(tok);
-		//       }
+
 		if (c == '#')
 		{
 			buff[0] = '\0';
@@ -498,42 +490,47 @@ struct Token getNextToken(FILE *fp)
 			}
 			return tok;
 		}
+		else if (c == '%')
+		{
+			c = fgetc(fp);
+			if (c == '=')
+			{
+				fillToken(&tok, "\%=", row, column);
+				column += 2;
+			}
+			else
+			{
+				fillToken(&tok, "%", row, column);
+				column++;
+				fseek(fp, -1, SEEK_CUR);
+			}
+			return tok;
+		}
 		else if (isAlpha(c))
 		{
-			// printf("%c",c);
 			int k = 0;
 			do
 			{
 				buff[k++] = c;
 				c = fgetc(fp);
-				// printf("%c",c);
 			} while (isAlpha(c) || isDigit(c) || c == '_');
-			// printf("%c",c);
 			fseek(fp, -1, SEEK_CUR);
 			buff[k] = '\0';
-			// printf("WORD %s\n", id);
 			if (isKeyword(buff))
 			{
 				fillToken(&tok, buff, row, column);
 				if (isDataType(buff))
 				{
-					// printf("%s",dbuf);
-					// printf("is a datatype\n");
-					//commented because of rd parser
-					//dbuf[0]='\0';
-					// printf("Changing dbuf %s",buff);
 					strcpy(dbuf, buff);
-					// printf("%s",dbuf);
 				}
-				//For symbol table
+				// For symbol table
 				if (strcmp("main", buff) == 0)
 					insertSymbolTable(buff, dbuf, fp);
 			}
 			else
 			{
-				// printf("I was here %s",buff);
 				fillToken(&tok, "id", row, column);
-				//For symbol table
+				// For symbol table
 				insertSymbolTable(buff, dbuf, fp);
 			}
 			column += k;
@@ -563,8 +560,7 @@ struct Token getNextToken(FILE *fp)
 			} while (isDigit(c));
 			buff[k] = '\0';
 			fillToken(&tok, "num", row, column);
-			// fseek(fp, -1, SEEK_CUR);
-			// column += k;
+
 			if (c == '\n')
 			{
 				column = 1;
@@ -590,7 +586,6 @@ struct Token getNextToken(FILE *fp)
 			}
 		}
 		c = fgetc(fp);
-		// printf("%c\n",c);
 	}
 	tok.row = -1;
 	return tok;
