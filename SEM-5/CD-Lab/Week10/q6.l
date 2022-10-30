@@ -5,6 +5,7 @@
 
 %%
 \/\/.* { fwrite(yytext, 1, yyleng, yyout); }
+\/\*(.|\n)*\*\/ { fwrite(yytext, 1, yyleng, yyout); }
 [A-Z] { yytext[0] += 32; fwrite(yytext, 1, yyleng, yyout); }
 %%
 
