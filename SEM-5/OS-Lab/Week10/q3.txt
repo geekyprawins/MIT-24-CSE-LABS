@@ -1,0 +1,2 @@
+>> Identify number of partitions and details of pendrive
+sudo fdisk -l /dev/sdb

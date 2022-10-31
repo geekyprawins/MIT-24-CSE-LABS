@@ -1,0 +1,2 @@
+>> List number of harddisks connected to a system: 
+lsblk
