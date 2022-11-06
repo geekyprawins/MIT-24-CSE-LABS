@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
 
     p = 0;
 
-    while ((read(f1, &chr, 1)) > 0)
+    while ((read(f2, &chr, 1)) > 0)
     {
         if (chr != '\n')
         {
