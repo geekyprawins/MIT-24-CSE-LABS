@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 			printf("%d : ", n + 1);
 			res = read(pipe_fd, buffer, BUFFER_SIZE);
 			printf("%s\n", buffer);
-			bytes_read += BUFFER_SIZE;
+			bytes_read += res;
 			n++;
 		} while (n < 4);
 		close(pipe_fd);
