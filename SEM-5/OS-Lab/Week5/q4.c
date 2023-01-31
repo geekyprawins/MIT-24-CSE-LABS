@@ -15,7 +15,7 @@ void *add_odd(void *args)
 	}
 	return (void *)res;
 }
-
+  
 void *add_even(void *args)
 {
 	int *arr = (int *)args;
