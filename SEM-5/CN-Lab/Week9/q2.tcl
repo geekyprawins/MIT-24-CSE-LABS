@@ -3,8 +3,8 @@ set ns [new Simulator]
 set nf [open out.nam w]
 $ns namtrace-all $nf
 
-$ns color 1 Red
-$ns color 2 Blue
+$ns color 1 Turquoise
+$ns color 2 Gold
 
 proc finish {} {
     global ns nf

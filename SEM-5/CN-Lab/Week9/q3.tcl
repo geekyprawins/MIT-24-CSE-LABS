@@ -28,7 +28,6 @@ $ns attach-agent $n3 $tcp
 
 set sink [new Agent/TCPSink]
 $ns attach-agent $n4 $sink
-
 $ns connect $tcp $sink
 $tcp set fid_ 2
 
@@ -42,7 +41,6 @@ $ns attach-agent $n1 $udp
 
 set null [new Agent/Null]
 $ns attach-agent $n2 $null
-
 $ns connect $udp $null
 $udp set fid_ 1
 
