@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script
+    type="text/javascript"
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+  ></script>
+  <script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+      $("button").click(function () {
+        $("#pp").attr("style","margin-left: 0px;")
+      });
+    });
+  </script>
+</head>
+<body>
+    <table border="2" id="pp" style="margin-left: 500px;">
+        <tr>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Image</th>
+        </tr>
+        <tr>
+          <td style="background-color: orange;color: white;">Praveen</td>
+          <td style="background-color: green;color: white;">Hyderabad</td>
+          <td>
+            <img src="https://img.freepik.com/free-photo/handsome-confident-smiling-man-with-hands-crossed-chest_176420-18743.jpg?w=1380&t=st=1675399825~exp=1675400425~hmac=216e515fb38be15dd2c95261e88545bdc9ffb96314942672d95a874d38e562c1" alt="praveen"
+            style="height: 200px; width: 250px;">
+          </td>
+        </tr>
+        <tr>
+            <td style="background-color: maroon; color: white;">Pratik</td>
+            <td style="background-color: rgb(131, 131, 49); color:white;">Qatar</td>
+            <td>
+              <img src="https://img.freepik.com/free-photo/young-man-posing-with-crossed-arms_114579-42107.jpg?t=st=1675399825~exp=1675400425~hmac=7c608d22068429a81479685bd21ff97b63ece90c71da98748f6bcde1a75fbe87" alt="pratik" style="height: 200px; width: 250px;">
+            </td>
+        </tr>
+      </table>
+      <br></br>
+      <button style="height: 30px;">Move me daddy</button>
+</body>
+</html>
