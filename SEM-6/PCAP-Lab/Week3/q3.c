@@ -22,9 +22,9 @@ int main(int argc, char *argv[])
         length /= size;
     }
 
-    MPI_Bcast(&length, 1, MPI_INT, 0, MPI_COMM_WORLD);
+    MPI_Bcast(&length, 1, MPI_INT, 0, MCW);
     str = (char *)calloc(length, sizeof(char));
-    MPI_Scatter(string, length, MPI_CHAR, str, length, MPI_CHAR, 0, MPI_COMM_WORLD);
+    MPI_Scatter(string, length, MPI_CHAR, str, length, MPI_CHAR, 0, MCW);
     for (int i = 0; i < length; i++)
     {
         char x = str[i];

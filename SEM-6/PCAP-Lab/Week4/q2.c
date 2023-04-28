@@ -41,7 +41,7 @@ int main(int argc, char* argv[]){
         ErrorHandler(err_code);
         printf("The value of Pi is: %f\n", result);
     }
-
+    
     MPI_Finalize();
     exit(0);
 }

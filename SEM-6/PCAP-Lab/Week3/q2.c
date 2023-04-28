@@ -25,20 +25,19 @@ int main(int argc, char *argv[])
     }
 
     MPI_Bcast(&M, 1, MPI_INT, 0, MCW);
-
+    
     MPI_Scatter(numbers, M, MPI_INT, c, M, MPI_INT, 0, MCW);
 
-    for (int i = 0; i < M; i++)
+    for (int i = 0; i < M; i++) 
         sum += c[i];
-
+    
     avg = sum / M;
 
     int res[size];
     MPI_Gather(&avg, 1, MPI_INT, res, 1, MPI_INT, 0, MCW);
     if (rank == 0)
     {
-        for (int i = 0; i < size; i++)
-            gAvg += res[i];
+        for(int i=0;i<size;i++) gAvg+=res[i];
         printf("The total avg is %f\n", (double)gAvg / N);
         free(numbers);
     }
