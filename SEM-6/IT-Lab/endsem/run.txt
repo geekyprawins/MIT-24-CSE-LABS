@@ -1,0 +1,9 @@
+Steps to run:
+```
+1. source env/bin/activate
+2. pip install django
+3. python3 manage.py makemigrations
+4. python3 manage.py migrate
+5. python3 manage.py createsuperuser
+6. python3 manage.py runserver PORT_NO
+```

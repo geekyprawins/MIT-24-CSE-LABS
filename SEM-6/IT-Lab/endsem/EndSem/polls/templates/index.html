@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polls</title>
+</head>
+<body>
+    <p>Here are students standing for CR election: </p>
+    <ul>
+        {% for student in crs %}
+            <li>{{ student.student_nominated }} - Section {{ student.section}}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

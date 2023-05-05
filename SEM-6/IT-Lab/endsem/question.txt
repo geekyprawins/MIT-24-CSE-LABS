@@ -1,0 +1,4 @@
+Create two tables StudentCR and Choice, and populate them with the following data using django admin on '/admin' page.
+StudentCR must have name and section as fields.
+Choice must have student names from the StudentCR table as choices, and vote as the radio button as fields. 
+Create a home page to display all student CRs.
